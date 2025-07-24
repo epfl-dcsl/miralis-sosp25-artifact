@@ -1,0 +1,25 @@
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero means success: 0
+iruntime 9017710
+user@starfive:~$ taskset -c 0 ./aes.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero means success: 0
+iruntime 9001243
+user@starfive:~$ taskset -c 0 ./aes.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+[  465.444493] dwmmc_starfive 16020000.sdio1: Unexpected interrupt latency
+Zero means success: 0
+iruntime 8990643
+user@starfive:~$ taskset -c 0 ./aes.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero means success: 0
+iruntime 9002058
+user@starfive:~$ taskset -c 0 ./aes.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero means success: 0
+iruntime 9006854

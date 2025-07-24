@@ -1,0 +1,20 @@
+user@starfive:~$ cd norx/
+user@starfive:~/norx$ ./norx
+Zero implies success: 0
+iruntime 5883287
+user@starfive:~/norx$ ./norx
+Zero implies success: 0
+iruntime 5883163
+user@starfive:~/norx$ ./norx
+Zero implies success: 0
+iruntime 5894326
+user@starfive:~/norx$ ./norx
+Zero implies success: 0
+iruntime 5872281
+user@starfive:~/norx$ ./norx
+Zero implies success: 0
+iruntime 5878889
+user@starfive:~/norx$ 
+
+
+

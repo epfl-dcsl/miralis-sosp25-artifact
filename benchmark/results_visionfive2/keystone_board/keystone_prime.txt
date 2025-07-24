@@ -1,0 +1,16 @@
+user@starfive:~/primes$ ./prime
+9998893
+iruntime 4030996
+user@starfive:~/primes$ ./prime
+9998893
+iruntime 4164158
+user@starfive:~/primes$ ./prime
+9998893
+iruntime 4037021
+user@starfive:~/primes$ ./prime
+9998893
+iruntime 4126322
+user@starfive:~/primes$ ./prime
+9998893
+iruntime 4051398
+user@starfive:~/primes$ 

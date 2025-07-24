@@ -1,0 +1,51 @@
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.487 $
+		Compiled for 64 bit mode.
+		Build: Generic 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov, Sudhir Kumar.
+
+	Run began: Tue Mar 11 14:22:36 2025
+
+	O_DIRECT feature enabled
+	File size set to 128 kB
+	File size set to 256 kB
+	File size set to 512 kB
+	File size set to 1024 kB
+	File size set to 2048 kB
+	File size set to 4096 kB
+	File size set to 8192 kB
+	File size set to 16384 kB
+	File size set to 32768 kB
+	File size set to 65536 kB
+	File size set to 131072 kB
+	Record Size 128 kB
+	Command line used: ./iozone -i 0 -i 1 -I -s 128k -s 256k -s 512k -s 1M -s 2M -s 4M -s 8M -s 16M -s 32M -s 64M -s 128M -r 128k
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+                                                              random    random     bkwd    record    stride                                    
+              kB  reclen    write  rewrite    read    reread    read     write     read   rewrite      read   fwrite frewrite    fread  freread
+             128     128    15423    15573    20233    20179                                                                                  
+             256     128    15711    15165    20253    20314                                                                                  
+             512     128    16456    15892    20242    20191                                                                                  
+            1024     128    15497    16093    20286    20314                                                                                  
+            2048     128    15620    15628    20235    20232                                                                                  
+            4096     128    16492    16843    20288    20282                                                                                  
+            8192     128    16043    15896    20198    20215                                                                                  
+           16384     128    15596    17089    20311    20260                                                                                  
+           32768     128    15578    16590    20175    20199                                                                                  
+           65536     128    15647    16896    20138    20182                                                                                  
+          131072     128    15815    16366    20193    20197                                                                                  
+
+iozone test complete.

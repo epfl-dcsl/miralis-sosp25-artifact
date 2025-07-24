@@ -1,0 +1,31 @@
+user@starfive:~$ taskset -c 0 ./prime.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+9998893
+iruntime 4047737
+user@starfive:~$ taskset -c 0 ./prime.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+9998893
+iruntime 4004212
+user@starfive:~$ taskset -c 0 ./prime.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+9998893
+iruntime 4006777
+user@starfive:~$ taskset -c 0 ./prime.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+9998893
+iruntime 4005150
+user@starfive:~$ taskset -c 0 ./prime.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+9998893
+iruntime 4268538
+user@starfive:~$ 
+
+
+
+
+

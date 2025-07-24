@@ -1,0 +1,9 @@
+-  Info: Starting Run...
+-- Workload:parser-125k=780641437
+-- parser-125k:time(ns)=68459
+-- parser-125k:contexts=4
+-- parser-125k:iterations=2000
+-- parser-125k:time(secs)=  68.459
+-- parser-125k:secs/workload=0.0342295
+-- parser-125k:workloads/sec= 29.2146
+-- Done:parser-125k=780641437

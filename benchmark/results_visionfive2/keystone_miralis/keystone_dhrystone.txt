@@ -1,0 +1,26 @@
+user@starfive:~$ taskset -c 0 ./dhrystone.ke                                                                                            
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Dhrystone(1.1-mc), 10000000 passes, 3563669 microseconds, 1593 DMIPS
+iruntime 9503288
+user@starfive:~$ taskset -c 0 ./dhrystone.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Dhrystone(1.1-mc), 10000000 passes, 3574242 microseconds, 1589 DMIPS
+iruntime 9531492
+user@starfive:~$ taskset -c 0 ./dhrystone.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Dhrystone(1.1-mc), 10000000 passes, 3566352 microseconds, 1592 DMIPS
+iruntime 9510443
+user@starfive:~$ taskset -c 0 ./dhrystone.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Dhrystone(1.1-mc), 10000000 passes, 3564601 microseconds, 1593 DMIPS
+iruntime 9505777
+user@starfive:~$ taskset -c 0 ./dhrystone.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Dhrystone(1.1-mc), 10000000 passes, 3568273 microseconds, 1591 DMIPS
+iruntime 9515587
+user@starfive:~$ 

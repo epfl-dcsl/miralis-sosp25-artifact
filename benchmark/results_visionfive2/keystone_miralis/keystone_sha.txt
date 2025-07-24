@@ -1,0 +1,24 @@
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+ebdd6f20865ff41e3613b633b93c9b89c15d58fd9d64497f5b22554a7fe33757357cfa622f6fb4f40beadc02d18539ecd79e2da126b662839d296c41acbc2
+iruntime 6378612
+user@starfive:~$ taskset -c 0 ./sha512.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+ebdd6f20865ff41e3613b633b93c9b89c15d58fd9d64497f5b22554a7fe33757357cfa622f6fb4f40beadc02d18539ecd79e2da126b662839d296c41acbc2
+iruntime 6383829
+user@starfive:~$ taskset -c 0 ./sha512.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+ebdd6f20865ff41e3613b633b93c9b89c15d58fd9d64497f5b22554a7fe33757357cfa622f6fb4f40beadc02d18539ecd79e2da126b662839d296c41acbc2
+iruntime 6377201
+user@starfive:~$ taskset -c 0 ./sha512.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+ebdd6f20865ff41e3613b633b93c9b89c15d58fd9d64497f5b22554a7fe33757357cfa622f6fb4f40beadc02d18539ecd79e2da126b662839d296c41acbc2
+iruntime 6382147
+user@starfive:~$ taskset -c 0 ./sha512.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+ebdd6f20865ff41e3613b633b93c9b89c15d58fd9d64497f5b22554a7fe33757357cfa622f6fb4f40beadc02d18539ecd79e2da126b662839d296c41acbc2
+iruntime 6377058

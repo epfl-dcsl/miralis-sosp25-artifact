@@ -1,0 +1,39 @@
+user@starfive:~$ taskset -c 0 ./miniz.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+miniz.c version: 10.0.0
+Compressed from 8388608 to 3218050 bytes
+Decompressed from 3218050 to 8388608 bytes
+Success.
+iruntime 19542278
+user@starfive:~$ taskset -c 0 ./miniz.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+miniz.c version: 10.0.0
+Compressed from 8388608 to 3218050 bytes
+Decompressed from 3218050 to 8388608 bytes
+Success.
+iruntime 19532966
+user@starfive:~$ taskset -c 0 ./miniz.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+^[[A
+^[[A^[[Aminiz.c version: 10.0.0
+Compressed from 8388608 to 3218050 bytes
+Decompressed from 3218050 to 8388608 bytes
+Success.
+iruntime 19549332
+user@starfive:~$ taskset -c 0 ./miniz.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package^[[A
+miniz.c version: 10.0.0
+Compressed from 8388608 to 3218050 bytes
+Decompressed from 3218050 to 8388608 bytes
+Success.
+iruntime 19537696
+Uncompressing Keystone Enclave Package
+miniz.c version: 10.0.0
+Compressed from 8388608 to 3218050 bytes
+Decompressed from 3218050 to 8388608 bytes
+Success.
+iruntime 19542324

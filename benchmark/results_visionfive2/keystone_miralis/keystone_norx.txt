@@ -1,0 +1,27 @@
+user@starfive:~$ taskset -c 0 ./norx.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero implies success: 0
+iruntime 6001484
+user@starfive:~$ taskset -c 0 ./norx.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero implies success: 0
+iruntime 6007665
+user@starfive:~$ taskset -c 0 ./norx.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero implies success: 0
+iruntime 6002638
+user@starfive:~$ taskset -c 0 ./norx.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero implies success: 0
+iruntime 5997607
+user@starfive:~$ taskset -c 0 ./norx.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+Zero implies success: 0
+iruntime 6007246
+user@starfive:~$ 
+

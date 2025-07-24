@@ -1,0 +1,9 @@
+-  Info: Starting Run...
+-- Workload:radix2-big-64k=1862946660
+-- radix2-big-64k:time(ns)=17894
+-- radix2-big-64k:contexts=4
+-- radix2-big-64k:iterations=3000
+-- radix2-big-64k:time(secs)=  17.894
+-- radix2-big-64k:secs/workload=0.00596467
+-- radix2-big-64k:workloads/sec= 167.654
+-- Done:radix2-big-64k=1862946660

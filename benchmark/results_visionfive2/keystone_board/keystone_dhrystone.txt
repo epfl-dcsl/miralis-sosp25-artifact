@@ -1,0 +1,15 @@
+user@starfive:~/dhrystone$ ./dhrystone
+Dhrystone(1.1-mc), 10000000 passes, 2378936 microseconds, 2387 DMIPS
+iruntime 9515896
+user@starfive:~/dhrystone$ ./dhrystone
+Dhrystone(1.1-mc), 10000000 passes, 2383273 microseconds, 2383 DMIPS
+iruntime 9533293
+user@starfive:~/dhrystone$ ./dhrystone
+Dhrystone(1.1-mc), 10000000 passes, 2382671 microseconds, 2383 DMIPS
+iruntime 9530829
+user@starfive:~/dhrystone$ ./dhrystone
+Dhrystone(1.1-mc), 10000000 passes, 2385406 microseconds, 2381 DMIPS
+iruntime 9541755
+user@starfive:~/dhrystone$ ./dhrystone
+Dhrystone(1.1-mc), 10000000 passes, 2379083 microseconds, 2387 DMIPS
+iruntime 9516412

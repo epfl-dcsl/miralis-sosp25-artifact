@@ -1,0 +1,23 @@
+Uncompressing Keystone Enclave Package
+3161985
+iruntime 10973623
+user@starfive:~$ taskset -c 0 ./sort.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+3161985
+iruntime 10928409
+user@starfive:~$ taskset -c 0 ./sort.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+3161985
+iruntime 10920647
+user@starfive:~$ taskset -c 0 ./sort.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+3161985
+iruntime 10920929
+user@starfive:~$ taskset -c 0 ./sort.ke 
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Package
+3161985
+iruntime 10931241

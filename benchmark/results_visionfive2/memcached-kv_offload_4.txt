@@ -1,0 +1,181 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] YCSB Root                                                          [pom]
+[INFO] Core YCSB                                                          [jar]
+[INFO] Per Datastore Binding descriptor                                   [jar]
+[INFO] YCSB Datastore Binding Parent                                      [pom]
+[INFO] memcached binding                                                  [jar]
+[INFO] 
+[INFO] ---------------------------< site.ycsb:root >---------------------------
+[INFO] Building YCSB Root 0.18.0-SNAPSHOT                                 [1/5]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:3.0.0-M1:enforce (enforce-maven) @ root ---
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:2.16:check (validate) @ root ---
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:list (default-cli) @ root ---
+[INFO] 
+[INFO] ---------------------------< site.ycsb:core >---------------------------
+[INFO] Building Core YCSB 0.18.0-SNAPSHOT                                 [2/5]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:3.0.0-M1:enforce (enforce-maven) @ core ---
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:2.16:check (validate) @ core ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ core ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ core ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 63 source files to /home/francois/Documents/miralis-benchmark/YCSB/core/target/classes
+[INFO] /home/francois/Documents/miralis-benchmark/YCSB/core/src/main/java/site/ycsb/CommandLine.java: Some input files use or override a deprecated API.
+[INFO] /home/francois/Documents/miralis-benchmark/YCSB/core/src/main/java/site/ycsb/CommandLine.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ core ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/francois/Documents/miralis-benchmark/YCSB/core/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ core ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ core ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ core ---
+[INFO] Building jar: /home/francois/Documents/miralis-benchmark/YCSB/core/target/core-0.18.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:list (default-cli) @ core ---
+[INFO] 
+[INFO] --------------< site.ycsb:datastore-specific-descriptor >---------------
+[INFO] Building Per Datastore Binding descriptor 0.18.0-SNAPSHOT          [3/5]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:3.0.0-M1:enforce (enforce-maven) @ datastore-specific-descriptor ---
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:2.16:check (validate) @ datastore-specific-descriptor ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ datastore-specific-descriptor ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ datastore-specific-descriptor ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ datastore-specific-descriptor ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/francois/Documents/miralis-benchmark/YCSB/binding-parent/datastore-specific-descriptor/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ datastore-specific-descriptor ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ datastore-specific-descriptor ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ datastore-specific-descriptor ---
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:list (default-cli) @ datastore-specific-descriptor ---
+[INFO] 
+[INFO] ----------------------< site.ycsb:binding-parent >----------------------
+[INFO] Building YCSB Datastore Binding Parent 0.18.0-SNAPSHOT             [4/5]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:3.0.0-M1:enforce (enforce-maven) @ binding-parent ---
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:2.16:check (validate) @ binding-parent ---
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:copy-dependencies (stage-dependencies) @ binding-parent ---
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ binding-parent ---
+[INFO] 
+[INFO] --------------------< site.ycsb:memcached-binding >---------------------
+[INFO] Building memcached binding 0.18.0-SNAPSHOT                         [5/5]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-enforcer-plugin:3.0.0-M1:enforce (enforce-maven) @ memcached-binding ---
+[INFO] 
+[INFO] --- maven-checkstyle-plugin:2.16:check (validate) @ memcached-binding ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ memcached-binding ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/francois/Documents/miralis-benchmark/YCSB/memcached/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ memcached-binding ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /home/francois/Documents/miralis-benchmark/YCSB/memcached/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ memcached-binding ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/francois/Documents/miralis-benchmark/YCSB/memcached/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ memcached-binding ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ memcached-binding ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ memcached-binding ---
+[INFO] Building jar: /home/francois/Documents/miralis-benchmark/YCSB/memcached/target/memcached-binding-0.18.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:copy-dependencies (stage-dependencies) @ memcached-binding ---
+[INFO] Copying /home/francois/Documents/miralis-benchmark/YCSB/core/target/core-0.18.0-SNAPSHOT.jar to /home/francois/Documents/miralis-benchmark/YCSB/memcached/target/dependency/core-0.18.0-SNAPSHOT.jar
+[INFO] org.apache.htrace:htrace-core4:jar:4.1.0-incubating already exists in destination.
+[INFO] org.hdrhistogram:HdrHistogram:jar:2.1.12 already exists in destination.
+[INFO] log4j:log4j:jar:1.2.17 already exists in destination.
+[INFO] org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13 already exists in destination.
+[INFO] net.spy:spymemcached:jar:2.11.4 already exists in destination.
+[INFO] org.codehaus.jackson:jackson-core-asl:jar:1.9.4 already exists in destination.
+[INFO] 
+[INFO] --- maven-assembly-plugin:2.5.5:single (default) @ memcached-binding ---
+[INFO] Building tar: /home/francois/Documents/miralis-benchmark/YCSB/memcached/target/ycsb-memcached-binding-0.18.0-SNAPSHOT.tar.gz
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.10:list (default-cli) @ memcached-binding ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for YCSB Root 0.18.0-SNAPSHOT:
+[INFO] 
+[INFO] YCSB Root .......................................... SUCCESS [  1.814 s]
+[INFO] Core YCSB .......................................... SUCCESS [  2.344 s]
+[INFO] Per Datastore Binding descriptor ................... SUCCESS [  0.162 s]
+[INFO] YCSB Datastore Binding Parent ...................... SUCCESS [  0.341 s]
+[INFO] memcached binding .................................. SUCCESS [  1.537 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.756 s
+[INFO] Finished at: 2025-02-26T15:07:19+01:00
+[INFO] ------------------------------------------------------------------------
+[OVERALL], RunTime(ms), 174380
+[OVERALL], Throughput(ops/sec), 57346.025920403714
+[TOTAL_GCS_G1_Young_Generation], Count, 219
+[TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 439
+[TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.25174905379057233
+[TOTAL_GCS_G1_Old_Generation], Count, 0
+[TOTAL_GC_TIME_G1_Old_Generation], Time(ms), 0
+[TOTAL_GC_TIME_%_G1_Old_Generation], Time(%), 0.0
+[TOTAL_GCs], Count, 219
+[TOTAL_GC_TIME], Time(ms), 439
+[TOTAL_GC_TIME_%], Time(%), 0.25174905379057233
+[READ], Operations, 4999696
+[READ], AverageLatency(us), 516.686280525856
+[READ], MinLatency(us), 152
+[READ], MaxLatency(us), 240127
+[READ], 95thPercentileLatency(us), 840
+[READ], 99thPercentileLatency(us), 1234
+[READ], Return=OK, 4999696
+[CLEANUP], Operations, 32
+[CLEANUP], AverageLatency(us), 2036.28125
+[CLEANUP], MinLatency(us), 774
+[CLEANUP], MaxLatency(us), 12743
+[CLEANUP], 95thPercentileLatency(us), 8175
+[CLEANUP], 99thPercentileLatency(us), 12743
+[UPDATE], Operations, 5000304
+[UPDATE], AverageLatency(us), 514.4838057846083
+[UPDATE], MinLatency(us), 161
+[UPDATE], MaxLatency(us), 230399
+[UPDATE], 95thPercentileLatency(us), 850
+[UPDATE], 99thPercentileLatency(us), 1256
+[UPDATE], Return=OK, 5000304

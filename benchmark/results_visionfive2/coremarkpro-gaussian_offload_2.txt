@@ -1,0 +1,9 @@
+-  Info: Starting Run...
+-- Workload:linear_alg-mid-100x100-sp=1046644201
+-- linear_alg-mid-100x100-sp:time(ns)=45778
+-- linear_alg-mid-100x100-sp:contexts=4
+-- linear_alg-mid-100x100-sp:iterations=3000
+-- linear_alg-mid-100x100-sp:time(secs)=  45.778
+-- linear_alg-mid-100x100-sp:secs/workload=0.0152593
+-- linear_alg-mid-100x100-sp:workloads/sec= 65.5337
+-- Done:linear_alg-mid-100x100-sp=1046644201

@@ -1,0 +1,17 @@
+user@starfive:~/sort$ ./sort
+3161985
+iruntime 10499761
+user@starfive:~/sort$ ./sort
+3161985
+iruntime 10472941
+user@starfive:~/sort$ ./sort
+3161985
+iruntime 10802721
+user@starfive:~/sort$ ./sort
+3161985
+iruntime 10483616
+user@starfive:~/sort$ ./sort
+3161985
+iruntime 10812807
+user@starfive:~/sort$ 
+

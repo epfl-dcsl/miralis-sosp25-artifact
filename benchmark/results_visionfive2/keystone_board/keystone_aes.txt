@@ -1,0 +1,19 @@
+user@starfive:~$ cd aes/
+user@starfive:~/aes$ ./aes
+Zero means success: 0
+iruntime 8917260
+user@starfive:~/aes$ ./aes
+Zero means success: 0
+iruntime 8901011
+user@starfive:~/aes$ ./aes
+^C
+user@starfive:~/aes$ ./aes
+Zero means success: 0
+iruntime 8925066
+user@starfive:~/aes$ ./aes
+Zero means success: 0
+iruntime 8880175
+user@starfive:~/aes$ ./aes
+Zero means success: 0
+iruntime 8858998
+user@starfive:~/aes$ 

@@ -1,0 +1,9 @@
+[project]
+name = "miralis-sosp25-artifact"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+    "matplotlib>=3.9.4",
+    "numpy>=2.0.2",
+    "pandas>=2.3.1",
+]
