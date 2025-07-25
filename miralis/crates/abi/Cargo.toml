@@ -1,0 +1,14 @@
+[package]
+name = "miralis_abi"
+version = "0.1.0"
+edition = "2021"
+
+license = "MIT"
+
+[lints]
+workspace = true
+
+[dependencies]
+miralis_core = { path = "../core" }
+log = { workspace = true }
+miralis_config = { path = "../config"}

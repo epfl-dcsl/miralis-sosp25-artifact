@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main", "ci" ]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  Miralis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      RUSTFLAGS: --deny warnings
+      MIRALIS_RUNNER_STRICT: 1
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # We fetch the whole git tree to be able to run tests on previous commits
+        ref: ${{ github.event.pull_request.head.sha }} # Ignore automatic merge commit
+    - uses: extractions/setup-just@v2 # Install `just`
+    - name: Setup Toolchain
+      run: just install-toolchain
+    - name: Download QEMU
+      run: |
+        sudo apt-get update
+        sudo apt-get install qemu-system-riscv64
+
+        echo ""
+        echo "QEMU version:"
+        qemu-system-riscv64 --version
+    - name: Download Spike
+      run: |
+        wget --no-verbose https://github.com/epfl-dcsl/spike-ci-artifact/releases/download/v0.1.3/spike
+        chmod +x spike
+        echo "$PWD" >> $GITHUB_PATH
+        sudo apt install device-tree-compiler
+    - name: Test
+      # Specify shell to enforce fail fast behavior, see:
+      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference
+      shell: bash
+      run: |
+        # First we check if there are merge commits in the PR
+        echo "Checking that history is linear..."
+        if [ ! -z "$(git rev-list --min-parents=2 HEAD)" ]; then
+          echo "There are merge commits! Please rebase the PR to remove them"
+          false
+        fi
+
+        # List the biggest git objects
+        echo "Biggest git objects:"
+        git ls-tree --format="%(objectsize:padded)  %(path)" -r HEAD | sort --key 1 --reverse | head -n 5
+
+        # And here we check that no object is too big
+        biggest="$(git ls-tree --format="%(objectsize:padded)" -r HEAD | sort --reverse | head -n 1)"
+        if [ $biggest -gt "200000" ]; then
+          echo "It seems a big object was committed. Please remove any executable or binary blob."
+          echo "Object size: $biggest bytes"
+        fi
+
+        # Finally we run the tests for all commits in the PR
+        revisions=$(git rev-list origin/main..HEAD)
+        for commit in $revisions; do
+          echo ""
+          echo "// ———————————————————————————————— Checkout ———————————————————————————————— //"
+          echo "// Commit: $commit                           //"
+          echo "// —————————————————————————————————————————————————————————————————————————— //"
+          echo ""
+          git checkout $commit
+          just test
+        done
+

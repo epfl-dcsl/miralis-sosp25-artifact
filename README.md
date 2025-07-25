@@ -21,6 +21,8 @@ For archival purpose, a copy of the repository at the time of the artifact evalu
 
 ### Running Miralis
 
+**Installing dependencies**
+
 All necessary software is installed in the docker image.
 To run outside of the docker image, you will need to first install the dependencies and configure the project with the following steps:
 
@@ -53,14 +55,38 @@ The output should be similar to:
 
 Under the hood, `just run` compiles a small test firmware (the sources are in `miralis/firmware/default`), starts QEMU with Miralis as the boot firmware which will then virtualize the test firmware.
 
-To make testing easier, we provide firmware artifacts that are downloaded on demand. For instance, to run Linux with a virtualized OpenSBI firmware, run `just run linux`.
+To make testing easier, we provide firmware artifacts that are downloaded on demand. For instance, to run Linux with a virtualized OpenSBI firmware, run :
 
-The list of artifacts is available in the [documentation](https://miralis-firmware.github.io/docs/artifacts). Most of them are exercised by the test suite, which can be run with `just test`. It can take up to a couple of minutes to run the full test suite.
+```sh
+just run linux
+```
+
+The list of artifacts is available in the [documentation](https://miralis-firmware.github.io/docs/artifacts).
+Most of them are exercised by the test suite, thus an easy way to test multiple configurations is simply to run the test suite:
+
+```sh
+just test
+```
+
+It can take up to a couple of minutes to run the full test suite.
+
+> [!INFO]
+> `just test` will skip tests if [`spike`](https://github.com/riscv-software-src/riscv-isa-sim) is not installed.
+> We use Spike in addition to QEMU to test Miralis with different sets of hardware features.
+> If `just test` exists with:
+>
+> ```
+> Test done: 32/37
+> spike is not available, skipped 5 tests
+> error: Recipe `test` failed on line 33 with exit code 1
+> ```
+>
+> It means that all tests succeeded on QEMU.
+> Testing with Spike is probably not necessary for the artifact evaluation, but if desired it can be [installed from source](https://github.com/riscv-software-src/riscv-isa-sim) or by downloading the [x86 binary we use in the CI](https://github.com/epfl-dcsl/spike-ci-artifact/releases/tag/v0.1.3).
 
 ### Understanding the codebase
 
 The purpose of this section is to give a feel for the Miralis code base.
-More details are available in the [documentation](https://miralis-firmware.github.io/docs/overview).
 
 The source code of Miralis is in the `src` folder at the root of the `miralis` repository, and is organized as follow:
 - The `virt` folder contains the virtualization logic, including CSR and instruction emulation, as well as world switches.

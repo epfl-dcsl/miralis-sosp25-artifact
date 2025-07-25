@@ -1,0 +1,11 @@
+[package]
+name = "miralis_core"
+version = "0.1.0"
+edition = "2021"
+
+license = "MIT"
+
+[lints]
+workspace = true
+
+[dependencies]

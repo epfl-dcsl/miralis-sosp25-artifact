@@ -1,0 +1,101 @@
+# Artifact manifest
+
+[bin.opensbi]
+description = "An OpenSBI image with a dummy payload that immediately exits."
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.1.7/opensbi.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.opensbi-jump]
+description = "An OpenSBI image which jump to address 0x80400000, where a payload is supposed to be loaded."
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.2.3/opensbi_jump.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.linux]
+description = "An OpenSBI image with a Linux kernel payload that exits after boot."
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.2.3/opensbi-linux-kernel-exit.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.linux-shell]
+description = "An OpenSBI image with a Linux kernel payload that spawn a shell after boot."
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.2.3/opensbi-linux-kernel-shell.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.zephyr]
+description = "A Zephyr image which summons two threads that print in round-robin several times before exiting."
+url = "https://github.com/CharlyCst/miralis-artifact-zephyr/releases/download/v0.1.1/zephyr.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-zephyr"
+
+[bin.rustsbi-qemu]
+description = "A RustSBI image mode for qemu. It is supposed to work in pairs with a test-kenel."
+url = "https://github.com/CharlyCst/miralis-artifact-rustsbi/releases/download/v0.1.3/rustsbi-qemu.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-rustsbi"
+
+[bin.rustsbi-test-kernel]
+description = "A test-kernel for RustSBI on qemu."
+url = "https://github.com/CharlyCst/miralis-artifact-rustsbi/releases/download/v0.1.3/test-kernel.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-rustsbi"
+
+[bin.u-boot]
+description = "A U-boot bootloader "
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.2.4/u-boot.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.u-boot-exit]
+description = "A U-boot bootloader that exits just before jumping to the OS"
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.2.4/u-boot-exit.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.linux-lock]
+description = "An OpenSBI image with a Linux kernel payload that locks itself in the protect payload policy"
+url = "https://github.com/CharlyCst/miralis-artifact-opensbi/releases/download/v0.2.5/opensbi-linux-kernel-lock.bin"
+repo = "https://github.com/CharlyCst/miralis-artifact-opensbi"
+
+[bin.keystone]
+description = "An OpenSBI Image with a Linux kernel payload that supports the Keystone driver"
+url = "https://github.com/FredKhayat/miralis-artifact-keystone/releases/download/v1.4.0/opensbi-linux-keystone.bin"
+repo = "https://github.com/FredKhayat/miralis-artifact-keystone"
+
+[disk.keystone]
+description = "A .ext2 filesystem image that contains the Keystone driver and some example keystone enclaves"
+url = "https://github.com/FredKhayat/miralis-artifact-keystone/releases/download/v1.4.0/keystone.ext2"
+repo = "https://github.com/FredKhayat/miralis-artifact-keystone"
+
+[disk.ubuntu]
+description = "A RISC-V Ubuntu image that can be used with Miralis"
+url = "https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.1-preinstalled-server-riscv64.img.xz"
+repo = "https://cdimage.ubuntu.com/"
+
+[disk.opensuse]
+description = "A RISC-V Opensuse image that can be used with Miralis"
+url = "https://download.opensuse.org/ports/riscv/tumbleweed/images/openSUSE-Tumbleweed-RISC-V-JeOS-starfivevisionfive2.riscv64.raw.xz"
+repo = "https://download.opensuse.org/"
+
+[disk.fedora]
+description = "A RISC-V Fedora image that can be used with Miralis"
+url = "https://dl.fedoraproject.org/pub/alt/risc-v/disk_images/Fedora-40/VisionFive2/20240903.n.0/Fedora.riscv64-Rawhide_server_20240903.n.0.raw.zst"
+repo = "https://dl.fedoraproject.org/"
+
+[disk.archlinux]
+description = "A RISC-V archlinux image that can be used with Miralis"
+url = "https://archriscv.felixc.at/images/archriscv-2024-09-22.tar.zst"
+repo = "https://archriscv.felixc.at/"
+
+[disk.gentoo]
+description = "A RISC-V gentoo image that can be used with Miralis"
+url = "https://distfiles.gentoo.org/releases/riscv/autobuilds/20241108T170320Z/stage3-rv64_lp64d-openrc-20241108T170320Z.tar.xz"
+repo = "https://distfiles.gentoo.org/"
+
+[disk.freebsd]
+description = "A RISC-V freebsd image that can be used with Miralis"
+url = "https://download.freebsd.org/snapshots/VM-IMAGES/15.0-CURRENT/riscv64/20241024/FreeBSD-15.0-CURRENT-riscv-riscv64-zfs-20241024-8b2e7da70855-273174.raw.xz"
+repo = "https://download.freebsd.org/"
+
+[disk.netbsd]
+description = "A RISC-V netbsd image that can be used with Miralis"
+url = "https://nycdn.netbsd.org/pub/NetBSD-daily/HEAD/latest/riscv-riscv64/binary/gzimg/riscv64.img.gz"
+repo = "https://nycdn.netbsd.org/"
+
+[disk.openbsd]
+description = "A RISC-V openBSD image that can be used with Miralis"
+url = "https://cdn.openbsd.org/pub/OpenBSD/7.6/riscv64/install76.img"
+repo = "https://cdn.openbsd.org/"

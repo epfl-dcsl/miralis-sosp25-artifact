@@ -1,0 +1,122 @@
+# Miralis configuration example
+#
+# To configure Miralis create a copy of that file named config.toml
+
+[log]
+# The default log level
+# Possible values are: trace, debug, info, warn, error, off
+level = "info"
+
+# In addition log levels can be specified for individual modules
+#
+# Each of the five levels can specify a list of modules which will log all
+# message at this or higher priority level. This is useful to selectively log
+# low priority messages (e.g. 'trace' or 'debug') while keeping a higher
+# default log level (e.g. 'info' or 'warn').
+#
+# By default only the default log level is taken into account.
+trace = ["miralis::virt", "miralis::arch::metal"]
+debug = ["miralis::arch"]
+info = []
+warn = []
+error = []
+
+# Use color in logs (using ANSI escape sequences).
+# Default to true.
+color = true
+
+[debug]
+# Maximum number of firmware exits before terminating.
+# No maximum cap if not present
+max_firmware_exits = 400
+
+# Number of iterations to be used by benchmark firmware.
+# What is iterated on may vary from one firmware to another.
+nb_iter = 1000
+
+[vcpu]
+# Maximum number of PMP exposed to the firmware.
+# No maximum by default.
+max_pmp = 8
+
+# Wether to delegate performance counters to the firmware
+# By default Miralis does not delegate the performance counters.
+delegate_perf_counters = false
+
+[platform]
+# Name of the platform (i.e. board) to compile for.
+# Default to "qemu_virt"
+name = "qemu_virt"
+
+# Nuber of harts (i.e. cores).
+# Default to 1.
+nb_harts = 1
+
+# Id of the boot hart
+# Default to 0
+boot_hart_id = 0
+
+[qemu]
+
+# Qemu machine (virt, sifive_u, spike...) 
+# Full list given by qemu-system-riscv64 --machine help
+# Default to "virt"
+machine = "virt"
+
+# Qemu cpu (rv64, sifive_u54, thread-c906...)
+# Full list given by qemu-system-riscv64 --cpu help
+# Default to "none"
+cpu = "none"
+
+# Amount of memory 
+memory = "2048M"
+
+# The name of a disk artifact (optional)
+disk = "ubuntu"
+
+# Path of QEMU executable (optional)
+path = "/usr/bin"
+
+[target.miralis]
+# Build profile for Miralis (dev profile is set by default)
+profile = "dev"
+
+# Miralis binary will be compiled with this value as a start address
+# Default to "0x80000000"
+start_address = 0x80000000
+
+# Size of the Miralis' stack for each hart (i.e. core)
+# Default to 0x8000
+stack_size = 0x8000
+
+[target.firmware]
+# Build profile for the firmware (dev profile is set by default)
+profile = "dev"
+
+# Firmware binary will be compiled with this value as a start address
+# Default to "0x80200000"
+start_address = 0x80200000
+
+# Size of the firmware stack for each hart (i.e. core)
+# Default to 0x8000
+stack_size = 0x8000
+
+[target.payload]
+# Name or path to the payload binary
+name = "hello_world"
+
+# Build profile for the payload (dev profile is set by default)
+profile = "dev"
+
+# Payload binary will be compiled with this value as a start address
+# Default to "0x80400000"
+start_address = 0x80400000
+
+# Size of the payload stack for each hart (i.e. core)
+# Default to 0x8000
+stack_size = 0x8000
+
+[modules]
+# The list of modules to enable
+# Defaults to none
+modules = ["offload", "keystone", "exit_counter"]

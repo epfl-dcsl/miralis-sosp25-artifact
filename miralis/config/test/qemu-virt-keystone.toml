@@ -1,0 +1,15 @@
+[log]
+level = "info"
+color = true
+
+[debug]
+max_firmware_exits = 2000
+
+[vcpu]
+max_pmp = 0
+
+[platform]
+nb_harts = 1
+
+[modules]
+modules = ["keystone"]

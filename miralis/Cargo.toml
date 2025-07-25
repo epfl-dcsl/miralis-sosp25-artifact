@@ -1,0 +1,70 @@
+[workspace]
+resolver = "2"
+members = [
+    # The Miralis sources
+    "src",
+
+    # Firmware
+    "firmware/clint_interrupt",
+    "firmware/clint_interrupt_multihart",
+    "firmware/clint_interrupt_priority",
+    "firmware/csr_ops",
+    "firmware/default",
+    "firmware/ecall",
+    "firmware/hypervisor",
+    "firmware/pmp",
+    "firmware/breakpoint",
+    "firmware/misaligned_op",
+    "firmware/mret",
+    "firmware/os_ctx_switch",
+    "firmware/sandbox",
+    "firmware/test_protect_payload_firmware",
+    "firmware/interrupt",
+    "firmware/os_ecall",
+    "firmware/device",
+    "firmware/tracing_firmware",
+    "firmware/vectored_mtvec",
+
+    # Payload
+    "payload/hello_world",
+    "payload/test_protect_payload_payload",
+    "payload/test_keystone_payload",
+
+    # Crates
+    "crates/abi",
+    "crates/core",
+    "crates/config",
+    "crates/config_select",
+    "crates/module_macro",
+    "crates/test_helpers",
+
+    # Tooling
+    "runner",
+
+    # Testing and verification
+    "model_checking",
+]
+
+# Setting the runner as the default member makes it easier to invoke (no need
+# for `--package runner`)
+default-members = ["runner"]
+
+[workspace.dependencies]
+log = "0.4.17"
+softcore-rv64 = "0.4.0"
+
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn",  check-cfg = ["cfg(kani)"] }
+
+[workspace.lints.clippy]
+uninlined_format_args = "allow"
+result_unit_err = "allow"
+
+[profile.dev]
+panic = "abort"
+opt-level = 3
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+

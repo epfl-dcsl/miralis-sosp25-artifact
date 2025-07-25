@@ -1,0 +1,6 @@
+.claude
+/target
+config.toml
+artifacts
+/.vscode
+/.idea

@@ -1,0 +1,21 @@
+# A test configuration to run on QEMU virt platform with a release profile
+
+[log]
+level = "info"
+color = true
+
+[debug]
+max_firmware_exits = 2000
+
+[vcpu]
+max_pmp = 8
+
+[platform]
+nb_harts = 1
+
+[target.miralis]
+profile = "release"
+stack_size = 0x8000
+
+[target.firmware]
+profile = "release"
