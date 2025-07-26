@@ -11,6 +11,10 @@ We provide a docker image with all required software `TODO!!!!`
 
 The rest of this README describes how to evaluate each of the artifacts.
 
+> Hardware requirements: 20 GB available storage, 16GB RAM
+>
+> Optional: a compatible RISC-V board
+
 ## Miralis
 
 > Estimated time: XX human time + XX computer time
@@ -23,18 +27,22 @@ For archival purpose, a copy of the repository at the time of the artifact evalu
 
 **Installing dependencies**
 
-All necessary software is installed in the docker image.
-To run outside of the docker image, you will need to first install the dependencies and configure the project with the following steps:
+- **With docker**: all necessary software is already installed in the docker image.
 
-1. Install Rust (see the [instructions](https://rust-lang.org/tools/install)).
-2. Install [Just](https://github.com/casey/just) (can be installed with `cargo install just`).
-3. Install `qemu-system-riscv64`. On Ubuntu: `sudo apt install qemu-system-riscv64`.
+- **Without docker**:
+  To run outside of the docker image, you will need to first install the dependencies and configure the project with the following steps:
+    
+    1. Install Rust (see the [instructions](https://rust-lang.org/tools/install)).
+    2. Install [Just](https://github.com/casey/just) (can be installed with `cargo install just`).
+    3. Install `qemu-system-riscv64`. On Ubuntu: `sudo apt install qemu-system-riscv64`.
+    
+    Then in the `miralis` folder:  
+    
+    4. Run `just install-toolchain` to install the required Rust components.
 
-Then in the `miralis` folder:  
+**Running Miralis**
 
-4. Run `just install-toolchain` to install the required Rust components.
-5. Run `just run` to run Miralis with a small test firmware.
-
+Let's first check that that everything is in place by running `just run` in the `miralis` folder.
 The output should be similar to:
 
 ```
