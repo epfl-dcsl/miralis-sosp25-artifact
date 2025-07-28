@@ -35,6 +35,10 @@ For archival purpose, a copy of the repository at the time of the artifact evalu
     1. Install Rust (see the [instructions](https://rust-lang.org/tools/install)).
     2. Install [Just](https://github.com/casey/just) (can be installed with `cargo install just`).
     3. Install `qemu-system-riscv64`. On Ubuntu: `sudo apt install qemu-system-riscv64`.
+
+    > [!WARNING] 
+    > A subtle bug has been introduced in recent QEMU versions (after 9.2) which causes Miralis to mis-behave. We [reported the bug](https://gitlab.com/qemu-project/qemu/-/issues/3020), which was confirmed by the developer. The patch will be back-ported to all maintained QEMU versions, but some package managers such as Homebrew might provide a `qemu-system-riscv64` version with the bug.
+    > If the Miralis fails with a panic, we recommend using `qemu-system-riscv64` version 9.2.0, which is the latest good version.
     
     Then in the `miralis` folder:  
     
@@ -56,10 +60,6 @@ The output should be similar to:
 [Info  | miralis::virt::emulator] Number of exits: 5
 [Info  | miralis::debug] Maximal stack usage: 4232 bytes (12.29%)
 ```
-
-> [!WARNING] 
-> A subtle bug has been introduced in recent QEMU versions (after 9.2) which causes Miralis to mis-behave. We [reported the bug](https://gitlab.com/qemu-project/qemu/-/issues/3020), which was confirmed by the developer. The patch will be back-ported to all maintained QEMU versions, but some package managers such as Homebrew might provide a `qemu-system-riscv64` version with the bug.
-> If the Miralis fails with a panic, we recommend using `qemu-system-riscv64` version 9.2.0, which is the latest good version.
 
 Under the hood, `just run` compiles a small test firmware (the sources are in `miralis/firmware/default`), starts QEMU with Miralis as the boot firmware which will then virtualize the test firmware.
 This is how the deployment looks like:
@@ -89,8 +89,8 @@ just test
 
 It can take up to a couple of minutes to run the full test suite.
 
-> [!INFO]
-> `just test` will skip tests if [`spike`](https://github.com/riscv-software-src/riscv-isa-sim) is not installed.
+> [!NOTE]
+> `just test` will skip some tests if [`spike`](https://github.com/riscv-software-src/riscv-isa-sim) is not installed.
 > We use Spike in addition to QEMU to test Miralis with different sets of hardware features.
 > If `just test` exists with:
 >
@@ -101,7 +101,7 @@ It can take up to a couple of minutes to run the full test suite.
 > ```
 >
 > It means that all tests succeeded on QEMU.
-> Testing with Spike is probably not necessary for the artifact evaluation, but if desired it can be [installed from source](https://github.com/riscv-software-src/riscv-isa-sim) or by downloading the [x86 binary we use in the CI](https://github.com/epfl-dcsl/spike-ci-artifact/releases/tag/v0.1.3).
+> Testing with Spike is not necessary for the artifact evaluation, but if desired it can be [installed from source](https://github.com/riscv-software-src/riscv-isa-sim) or by downloading the [x86 binary we use in the CI](https://github.com/epfl-dcsl/spike-ci-artifact/releases/tag/v0.1.3).
 
 At this point we know that Miralis is working as intended.
 
@@ -129,12 +129,15 @@ The rest of the codebase, including the tools and tests, are described in the [o
 To enforce isolation between the firmware and other parts of the system, we can compile Miralis with policy modules.
 The paper describes three isolation policies:
 - The sandbox policy, which protects the OS from the firmware
-- The keystone policy, which can create enclabes protected from both the OS and the firmware.
+- The keystone policy, which can create enclaves protected from both the OS and the firmware.
   Our implementation is a re-write of the [original Keystone security monitor](https://github.com/keystone-enclave/keystone) as a Miralis policy module.
 - The ACE policy.
-  Our implementation if a port of the [ACE security monitor](https://github.com/IBM/ACE-RISCV), and maintain in a [separate repository](https://github.com/epfl-dcsl/miralis-ace) to reduce the maintenance burden.
+  Our implementation if a port of the [ACE security monitor](https://github.com/IBM/ACE-RISCV), and lives in a [separate repository](https://github.com/epfl-dcsl/miralis-ace) to reduce the maintenance burden.
 
-**1: Sandbox policy**
+For the artifact evaluation we propose to test the sandbox and keystone policies.
+The ACE policy requires a different setup and more computer time and storage, although we can provide instructions if desired.
+
+**Sandbox policy**
 
 We propose to test the sandbox policy by running an off-the-shelf Ubuntu distribution.
 In this setup, the whole OS (kernel and all processes) are isolated from the firmware.
@@ -144,7 +147,7 @@ Running the following command will automatically download an Ubuntu image, and r
 just run opensbi-jump config/ubuntu.toml
 ```
 
-> [!INFO]
+> [!NOTE]
 > The download might fail if the Ubuntu image gets deleted, which can happen when vulnerabilities are fixed in point releases.
 > The download URL can be found in `misc/artifacts.toml` and points to the official Ubuntu servers.
 > We will provide an update if the link breaks during the artifact evaluation.
@@ -160,7 +163,7 @@ modules = ["protect_payload"]
 It defines the modules to be compiled into Miralis.
 Here we see that the `protect_payload` module is enabled, which corresponds to the sandbox policy described in the paper.
 
-By looking at the Miralis logs right after starting QEMU we can confirm the modules has been installed:
+By looking at the Miralis logs right after starting QEMU we can confirm the module has been installed:
 
 ```
 [Info  | miralis::modules] Installed 1 modules:
@@ -178,10 +181,69 @@ By looking at the Miralis logs right after starting QEMU we can confirm the modu
 > This is because we do not keep the hashes up-to date, and the policy detects that an unknown payload (i.e. OS) has been loaded.
 > This can be safely ignored (or fixed by updating the policy with the latest hash value).
 
-Eventually you will get a loggin prompt and then a shell.
+Eventually you will get a login prompt and then a shell.
 Everything should feel normal, except the firmware can not access the OS memory.
 
-**2: Keystone policy**
+**Keystone policy**
+
+To evaluate the keystone policy we propose to run the tests from the upstream [Keystone project](https://github.com/keystone-enclave/keystone).
+To ease testing, we provide a pre-built disk image containing a Keystone-capable Linux kernel as well as test binaries.
+The build scripts and resulting artifacts can be inspected [in this repository](https://github.com/epfl-dcsl/miralis-artifact-keystone).
+The disk image is automatically downloaded and launched by running the following command:
+
+```sh
+just run keystone config/qemu-keystone.toml
+```
+
+Like for the previous command, the last part (`config/qemu-keystone.toml`) points to a configuration file.
+By looking at the file, we can see that the Keystone policy is enabled:
+
+```toml
+[modules]
+modules = ["keystone", "exit_counter"]
+```
+
+Which is confirmed by the Miralis logs:
+
+```
+[Info  | miralis::modules] Installed 2 modules:
+[Info  | miralis::modules]   - Keystone Policy
+[Info  | miralis::modules]   - Counter Benchmark
+```
+
+Once the Linux shell open, first install the Keystone kernel module:
+
+```sh
+modprobe keystone-driver
+```
+
+You should see similar logs which confirm the module has been installed:
+
+```
+bash-5.2# modprobe keystone-driver
+[  132.877929] keystone_driver: loading out-of-tree module taints kernel.
+[  132.883585] keystone_enclave: keystone enclave v1.0.0
+```
+
+Then go to the `/usr/share/keystone/examples/` directory to find the enclave examples:
+
+```sh
+cd /usr/share/keystone/examples/
+```
+
+For instance, executing `hello.ke`:
+
+```
+bash-5.2# ./hello.ke
+Verifying archive integrity... MD5 checksums are OK. All good.
+Uncompressing Keystone Enclave Packagedf: /tmp/selfgz62519370: can't find mount point
+./hello.ke: line 651: test: Available: integer expression expected
+
+hello, world!
+```
+
+A `.ke` executable is an archive containing a user-space and an enclave bundled together, in the above example the enclave prints "hello, world!".
+Note that the de-compression and "line 651" error exist with upstream Keystone to in our tests, they are not introduced by Miralis.
 
 ## Softcore-rs
 
