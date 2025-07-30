@@ -280,7 +280,7 @@ Miralis leverages the RISC-V model to verify some of the core virtualization com
 The verification tasks can be found in `./miralis/model_checking/src/lib.rs` and are the functions marked with `#[cfg_attr(kani, kani::proof)]`.
 
 Verification is handled by the `cargo kani` command, which is already available in the docker and installed as part of the Miralis installation when running outside of docker.
-To verify the emulation of the `mret` instruction, it suffices to run:
+To verify the emulation of the `mret` instruction, it suffices to run the following command in the `miralis` folder:
 
 ```sh
 cargo kani -p model_checking --output-format terse --harness mret
@@ -299,6 +299,8 @@ We provide the full list of verification tasks below, with the expected completi
 Tasks needed more than 16GB of ram are marked as "high RAM usage".
 Execution time might vary from simple to double on different machines.
 
+To run one of the task, execute `cargo kani -p model_checking --output-format terse --harness <task_id>` with the corresponding task ID:
+
 **Instructions decoding:**
 - `verify_stores`: ~2m30s
 - `verify_compressed_stores`: ~2m30s
@@ -311,13 +313,13 @@ Execution time might vary from simple to double on different machines.
 
 **Emulation:**
 - `exception_virtualization`: ~3m
-- interrupt_virtualization: ~3m
-- write_csr: ~30m (high RAM usage)
-- read_csr: ~15m (high RAM usage)
-- fences: ~2m
-- wfi: ~4m
-- sret: ~2m
-- mret: ~2m
+- `interrupt_virtualization`: ~3m
+- `write_csr`: ~30m (high RAM usage)
+- `read_csr`: ~15m (high RAM usage)
+- `fences`: ~2m
+- `wfi`: ~4m
+- `sret`: ~2m
+- `mret`: ~2m
 
 ## Benchmarks
 
