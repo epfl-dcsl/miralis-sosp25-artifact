@@ -13,7 +13,7 @@ The rest of this README describes how to evaluate each of the artifacts.
 
 > Hardware requirements:
 > - Required: 20 GB available storage and 16GB RAM to test with QEMU
-> - Optional: a compatible RISC-V board to test on hardware
+> - Optional: a compatible RISC-V board to test on hardware, 64GB RAM for full formal verification
 
 ## Miralis
 
@@ -252,10 +252,10 @@ Overall, we just verified that Miralis can run Keystone enclaves, while addition
 
 ## Softcore-rs
 
-> Estimated time: XX human time + XX computer time
+> Estimated time: 15m human time + 2h computer time for full verification (optional)
 
 Section 6 of the paper describes the methodology we used to verify the main components of the virtualization sub-system of Miralis.
-In a nutshell, we translated the official RISC-V executable specification (written in Sail) to Rust, and used the Kani model-checker to ensure emulation is compliant with the specification and hardware configuration produces the desired effects.
+In a nutshell, we translated the official RISC-V executable specification (written in Sail) to Rust, and used the [Kani model-checker](https://model-checking.github.io/kani/) to ensure emulation is compliant with the specification and hardware configuration produces the desired effects.
 
 Since the original paper submission, we split this part of Miralis into an independent project called `softcore-rs` in a [separate repository](https://github.com/CharlyCst/softcore-rs).
 For archival purpose, we include a copy of the project in the `./softcore-rs/` folder.
@@ -263,7 +263,7 @@ For archival purpose, we include a copy of the project in the `./softcore-rs/` f
 
 ### A quick tour of `softcore-rs`
 
-The Sail-to-Rust translation is not the may focus of the paper, therefore we only provide a quick overview of `softcore-rs` for the purpose of the artifact evaluation.
+The Sail-to-Rust translation is not the main focus of the paper, therefore we only provide a quick overview of `softcore-rs` for the purpose of the artifact evaluation.
 We plan to present `softcore-rs` and its application more in depth in a future work.
 
 At its core, `softcore-rs` is a Sail-to-Rust compiler.
@@ -279,10 +279,45 @@ We provide a thin wrapper around the raw translation in `./softcore-rs/rv64/src/
 Miralis leverages the RISC-V model to verify some of the core virtualization components.
 The verification tasks can be found in `./miralis/model_checking/src/lib.rs` and are the functions marked with `#[cfg_attr(kani, kani::proof)]`.
 
+Verification is handled by the `cargo kani` command, which is already available in the docker and installed as part of the Miralis installation when running outside of docker.
+To verify the emulation of the `mret` instruction, it suffices to run:
+
+```sh
+cargo kani -p model_checking --output-format terse --harness mret
+```
+
+This is expected to succeed in about 2 to 3 minutes.
+The last part of the command (`--harness mret`) selects which verification task to run, while running `cargo kani -p model_checking --output-format terse` will run all verification tasks.
+
 As full verification is time and RAM intensive, we provide a [recording](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb) showing the successful verification of Miralis at the time of the artifact review.
 The recording was speed-up to remove waiting time during compilation and verification, but the verification time are displayed for each verification task on lines starting with `Verification Time:`.
 
 [![asciicast](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb.svg)](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb)
+
+It is not necessary to re-run all verification tasks for the artifact evaluation, verifying a couple is sufficient.
+We provide the full list of verification tasks below, with the expected completion time.
+Tasks needed more than 16GB of ram are marked as "high RAM usage".
+Execution time might vary from simple to double on different machines.
+
+**Instructions decoding:**
+- `verify_stores`: ~2m30s
+- `verify_compressed_stores`: ~2m30s
+- `verify_load`: ~2m30s
+- `verify_compressed_loads`: ~2m30s
+- `verify_decoder`: ~3m
+
+**Hardware configuration:**
+- `pmp_virtualization`: ~20m (high RAM usage)
+
+**Emulation:**
+- `exception_virtualization`: ~3m
+- interrupt_virtualization: ~3m
+- write_csr: ~30m (high RAM usage)
+- read_csr: ~15m (high RAM usage)
+- fences: ~2m
+- wfi: ~4m
+- sret: ~2m
+- mret: ~2m
 
 ## Benchmarks
 
