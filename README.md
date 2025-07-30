@@ -244,11 +244,21 @@ hello, world!
 
 A `.ke` executable is an archive containing a user-space and an enclave bundled together, in the above example the enclave prints "hello, world!".
 Note that the de-compression and "line 651" error exist with upstream Keystone to in our tests, they are not introduced by Miralis.
+Overall, we just verified that Miralis can run Keystone enclaves, while additionally removing the firmware from the trusted computing base.
+
+> [!NOTE]
+> The execution time reported by some benchmarks such as dhrystone might not make sense, this is because the performance counters emulated by QEMU do not necessarily match the elapsed time or cycles on the host.
+> The performance reported in the paper were measured on real hardware.
 
 ## Softcore-rs
 
 > Estimated time: XX human time + XX computer time
 
+
+As full verification is time and RAM intensive, we provide a recording showing the successful verification of Miralis at the time of the artifact review.
+The recording was speed-up to remove waiting time during compilation and verification, but the verification time are displayed for each verification task on lines starting with `Verification Time:`.
+
+[![asciicast](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb.svg)](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb)
 
 ## Benchmarks
 
