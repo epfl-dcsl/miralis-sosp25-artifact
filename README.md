@@ -35,14 +35,14 @@ For archival purpose, a copy of the repository at the time of the artifact evalu
     1. Install Rust (see the [instructions](https://rust-lang.org/tools/install)).
     2. Install [Just](https://github.com/casey/just) (can be installed with `cargo install just`).
     3. Install `qemu-system-riscv64`. On Ubuntu: `sudo apt install qemu-system-riscv64`.
-
-    > [!WARNING] 
-    > A subtle bug has been introduced in recent QEMU versions (after 9.2) which causes Miralis to mis-behave. We [reported the bug](https://gitlab.com/qemu-project/qemu/-/issues/3020), which was confirmed by the developer. The patch will be back-ported to all maintained QEMU versions, but some package managers such as Homebrew might provide a `qemu-system-riscv64` version with the bug.
-    > If the Miralis fails with a panic, we recommend using `qemu-system-riscv64` version 9.2.0, which is the latest good version.
     
     Then in the `miralis` folder:  
     
     4. Run `just install-toolchain` to install the required Rust components.
+
+> [!WARNING] 
+> A subtle bug has been introduced in recent QEMU versions (after 9.2) which causes Miralis to mis-behave. We [reported the bug](https://gitlab.com/qemu-project/qemu/-/issues/3020), which was confirmed by the developer. The patch will be back-ported to all maintained QEMU versions, but some package managers such as Homebrew might provide a `qemu-system-riscv64` version with the bug.
+> If the Miralis fails with a panic, we recommend using `qemu-system-riscv64` version 9.2.0, which is the latest good version.
 
 **Running Miralis**
 
@@ -254,8 +254,32 @@ Overall, we just verified that Miralis can run Keystone enclaves, while addition
 
 > Estimated time: XX human time + XX computer time
 
+Section 6 of the paper describes the methodology we used to verify the main components of the virtualization sub-system of Miralis.
+In a nutshell, we translated the official RISC-V executable specification (written in Sail) to Rust, and used the Kani model-checker to ensure emulation is compliant with the specification and hardware configuration produces the desired effects.
 
-As full verification is time and RAM intensive, we provide a recording showing the successful verification of Miralis at the time of the artifact review.
+Since the original paper submission, we split this part of Miralis into an independent project called `softcore-rs` in a [separate repository](https://github.com/CharlyCst/softcore-rs).
+For archival purpose, we include a copy of the project in the `./softcore-rs/` folder.
+`softcore-rs` is available on the [Rust package registry](https://crates.io/crates/softcore-rv64) and can now be used by any other Rust project.
+
+### A quick tour of `softcore-rs`
+
+The Sail-to-Rust translation is not the may focus of the paper, therefore we only provide a quick overview of `softcore-rs` for the purpose of the artifact evaluation.
+We plan to present `softcore-rs` and its application more in depth in a future work.
+
+At its core, `softcore-rs` is a Sail-to-Rust compiler.
+It takes a Sail ISA implementation, and produces equivalent Rust code.
+The code of the compiler lives in `softcore-rs/sail_to_rust`.
+
+For the purpose of verifying Miralis, we focus on translating the [official RISC-V model](https://github.com/riscv/sail-riscv).
+The Rust translation of the RISC-V (64 bits variant) can be found in `./softcore-rs/rv64/src/raw.rs`, and is available as a [Rust library](https://crates.io/crates/softcore-rv64).
+We provide a thin wrapper around the raw translation in `./softcore-rs/rv64/src/lib.rs`, to make the Sail model more ergonomic to use from Rust code.
+
+### Verifying Miralis with `softcore-rs` ([recording](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb))
+
+Miralis leverages the RISC-V model to verify some of the core virtualization components.
+The verification tasks can be found in `./miralis/model_checking/src/lib.rs` and are the functions marked with `#[cfg_attr(kani, kani::proof)]`.
+
+As full verification is time and RAM intensive, we provide a [recording](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb) showing the successful verification of Miralis at the time of the artifact review.
 The recording was speed-up to remove waiting time during compilation and verification, but the verification time are displayed for each verification task on lines starting with `Verification Time:`.
 
 [![asciicast](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb.svg)](https://asciinema.org/a/UQARO1QlIKXPXTepgyEgV0IZb)

@@ -1,0 +1,22 @@
+[workspace]
+resolver = "2"
+members = [
+    # The Rust prelude, shared by all generated models
+    "prelude",
+
+    # The RISC-V Sail model
+    "rv64",
+
+    # Our tests
+    "tests/basic",
+    "tests/basic_alt",
+    "tests/config",
+    "tests/decoder",
+    "tests/hoisting",
+    "tests/optimization",
+    "tests/trap",
+    "tests/types",
+    "tests/mret",
+    "tests/csr",
+    "tests/wfi",
+]
