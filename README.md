@@ -17,7 +17,7 @@ The rest of this README describes how to evaluate each of the artifacts.
 
 ## Miralis
 
-> Estimated time: XX human time + XX computer time
+> Estimated time: 30m human time
 
 The Miralis repository is hosted at [https://github.com/CharlyCst/miralis](https://github.com/CharlyCst/miralis).
 Additional documentation is available online on the [Miralis website](https://miralis-firmware.github.io/docs/introduction).
@@ -323,6 +323,17 @@ To run one of the task, execute `cargo kani -p model_checking --output-format te
 
 ## Benchmarks
 
-> Estimated time: XX human time + XX computer time
+> Estimated time: 15m human time
 
+We provide all the benchmark scripts and data in the `./benchmark` folder.
+
+The plots from the paper can be reproduced by running the python scripts.
+We recommend using [`uv`](https://docs.astral.sh/uv/) to run the scripts, otherwise ensure that the dependencies are installed on the host machine.
+For instance, to plot the coremark result, run `uv run coremark.py` in the `./benchmark` folder.
+
+The plots use the date from the `./benchmark/results_visionfive2/` and `./benchmark/results_premier/` folders, which contain the results of all experiments presented in the paper.
+
+The benchmarks are automated using shell scripts, which can be found in the `./benchmark` folder too.
+For the purpose of the artifact evaluation we propose to re-run one of the benchmark.
+We will prove access to a VisonFive 2 board running Miralis through `ssh`, please submit your SSH key through HotCRP, we will authorize the key and follow-up with instructions.
 

@@ -140,6 +140,17 @@ impl CounterBenchmark {
         let hart_to_read = ctx.get(Register::X10);
         let exception_category = ExceptionCategory::try_from(ctx.get(Register::X11)).unwrap();
 
+        if hart_to_read >= PLATFORM_NB_HARTS {
+            log::warn!(
+                "Trying to read counters for category {} from hart {}, but system has only {} hards",
+                exception_category as usize,
+                hart_to_read,
+                PLATFORM_NB_HARTS
+            );
+            ctx.set(Register::X10, 0);
+            return;
+        }
+
         let measure = match exception_category {
             ExceptionCategory::NotOffloaded => {
                 COUNTERS[hart_to_read].world_switches.load(Ordering::SeqCst)

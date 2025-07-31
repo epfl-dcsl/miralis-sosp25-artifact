@@ -12,3 +12,7 @@ uv run applications.py
 uv run boot.py
 uv run keystone.py
 ```
+
+## Running the benchmarks
+
+The benchmarks scripts are provided in the form of shell scripts for archival purpose.
