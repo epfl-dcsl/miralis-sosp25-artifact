@@ -7,7 +7,12 @@ The artifacts are split in three parts:
 - Softcore-rs — a compiler and Rust translation of the official RISC-V executable specification
 - The benchmarks scripts and results
 
-We provide a docker image with all required software `TODO!!!!`
+Optionally, we provide a docker image with all required software.
+To start the docker container, run:
+
+```sh
+docker run --rm -it charlycst/miralis-sosp:v1.0
+```
 
 The rest of this README describes how to evaluate each of the artifacts.
 
@@ -330,6 +335,7 @@ We provide all the benchmark scripts and data in the `./benchmark` folder.
 The plots from the paper can be reproduced by running the python scripts.
 We recommend using [`uv`](https://docs.astral.sh/uv/) to run the scripts, otherwise ensure that the dependencies are installed on the host machine.
 For instance, to plot the coremark result, run `uv run coremark.py` in the `./benchmark` folder.
+The resulting plots can be found in `./benchmark/plots/`.
 
 The plots use the date from the `./benchmark/results_visionfive2/` and `./benchmark/results_premier/` folders, which contain the results of all experiments presented in the paper.
 
