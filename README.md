@@ -11,7 +11,7 @@ Optionally, we provide a docker image with all required software.
 To start the docker container, run:
 
 ```sh
-docker run --rm -it charlycst/miralis-sosp:v1.0
+docker run --rm -it charlycst/miralis-sosp:v1.1
 ```
 
 The rest of this README describes how to evaluate each of the artifacts.
