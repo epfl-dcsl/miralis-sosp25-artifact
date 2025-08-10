@@ -328,7 +328,7 @@ To run one of the task, execute `cargo kani -p model_checking --output-format te
 
 ## Benchmarks
 
-> Estimated time: 15m human time + 1h machine time
+> Estimated time: 15m human time + 30m machine time
 
 We provide all the benchmark scripts and data in the `./benchmark` folder.
 
@@ -348,6 +348,9 @@ We will prove access to a VisonFive 2 board running Miralis through `ssh`, pleas
 > [!NOTE]
 > This part is only relevant for the artifact evaluation, other users will need to setup their own boards.
 
+> [!NOTE]
+> We recommend executing this part on your machine directly rather than within the docker container, this will make it easier to visualize the plots.
+
 For the artifact evaluation we propose to run the coremark benchmark on the board.
 Once you gain access to the board you can log in as the `sosp` user:
 
@@ -356,5 +359,37 @@ ssh sosp@<board_ip>
 ```
 
 There you will see a `miralis-benchmark` with a `coremark-pro` folder inside containing the CoremarkPro benchmark.
-All necessary binares are already compiled.
+All necessary binaries are already compiled.
+
+To run the benchmark first update the IP address in `./benchmark/common.sh`:
+
+```sh
+COMMON_IP="sosp@<board_ip>"
+```
+
+Then execute the following from the `benchmark` folder:
+
+```sh
+./run_microbenchmarks.sh protect
+```
+
+This will run the CoremarkPro benchmark, which should last around 30 minutes.
+We pass `protect` as argument because the board has a Miralis image with the sandbox policy module installed, but not the fast path offloading module.
+This will ensure the collected data files are properly labelled for the plotting scripts.
+
+Once the benchmark is done, the results are available in `./benchmark/results`.
+We can copy them to overwrite the results from the paper:
+
+```sh
+cp -r results/* results_visionfive2/
+```
+
+Then you can plot the new results by running the `coremark.py` python script (we recommend using `uv`, otherwise install the required dependency with your favorite method):
+
+```sh
+uv run coremark.py
+```
+
+This will generate a new plot at `./benchmark/plots/coremark.pdf`.
+The blue bars (System no-offload) are the one that should be updated with new values.
 
