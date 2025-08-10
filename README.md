@@ -328,7 +328,7 @@ To run one of the task, execute `cargo kani -p model_checking --output-format te
 
 ## Benchmarks
 
-> Estimated time: 15m human time
+> Estimated time: 15m human time + 1h machine time
 
 We provide all the benchmark scripts and data in the `./benchmark` folder.
 
@@ -342,4 +342,19 @@ The plots use the date from the `./benchmark/results_visionfive2/` and `./benchm
 The benchmarks are automated using shell scripts, which can be found in the `./benchmark` folder too.
 For the purpose of the artifact evaluation we propose to re-run one of the benchmark.
 We will prove access to a VisonFive 2 board running Miralis through `ssh`, please submit your SSH key through HotCRP, we will authorize the key and follow-up with instructions.
+
+### Running the Coremark benchmark
+
+> [!NOTE]
+> This part is only relevant for the artifact evaluation, other users will need to setup their own boards.
+
+For the artifact evaluation we propose to run the coremark benchmark on the board.
+Once you gain access to the board you can log in as the `sosp` user:
+
+```sh
+ssh sosp@<board_ip>
+```
+
+There you will see a `miralis-benchmark` with a `coremark-pro` folder inside containing the CoremarkPro benchmark.
+All necessary binares are already compiled.
 
